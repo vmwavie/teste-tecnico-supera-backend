@@ -1,32 +1,18 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:16
-    container_name: postgres
-    environment:
-      POSTGRES_DB: backend_database
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123123
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
   app:
     build: .
     container_name: spring_app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/backend_database
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: 123123
-      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+#      SPRING_DATASOURCE_URL:
+#      SPRING_DATASOURCE_USERNAME:
+#      SPRING_DATASOURCE_PASSWORD:
+#      SPRING_JPA_HIBERNATE_DDL_AUTO:
       SPRING_JPA_SHOW_SQL: "true"
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
       SPRING_FOX_DOCUMENTATION_SWAGGER_UI_ENABLE: true
     ports:
       - "8080:8080"
-    depends_on:
-      - postgres
-
 volumes:
   postgres_data:
