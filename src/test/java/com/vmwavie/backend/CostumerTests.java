@@ -44,11 +44,10 @@ class CostumerTests {
 		List<Costumer> costumers = Arrays.asList(new Costumer(), new Costumer());
 		when(costumerRepository.findAll(any(PageRequest.class))).thenReturn(new PageImpl<>(costumers));
 
-		Map<String, Integer> paginationParams = new HashMap<>();
-		paginationParams.put("pageNumber", 0);
-		paginationParams.put("itemsPerPage", 10);
+		int pageNumber = 0;
+		int itemsPerPage = 10;
 
-		ResponseEntity<CostumerDto.CostumerResponseListAllDto> response = costumerService.getAllCostumers(paginationParams);
+		ResponseEntity<CostumerDto.CostumerResponseListAllDto> response = costumerService.getAllCostumers(pageNumber, itemsPerPage);
 
 		assertNotNull(response);
 		assertEquals(200, response.getStatusCodeValue());

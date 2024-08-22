@@ -7,4 +7,4 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 
-ENTRYPOINT ["mvn", "spring-boot:run"]
+ENTRYPOINT ["mvn", "spring-boot:run", "-DskipTests"]
