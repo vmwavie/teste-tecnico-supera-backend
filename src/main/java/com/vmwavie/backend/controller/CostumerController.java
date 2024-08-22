@@ -25,8 +25,10 @@ public class CostumerController {
 
     @GetMapping("/get-all")
     @ApiOperation(value = "Retorna todos os clientes cadastrados")
-    public ResponseEntity<CostumerDto.CostumerResponseListAllDto> getAllCostumers(@RequestBody Map<String, Integer> paginationParams) {
-        return costumerService.getAllCostumers(paginationParams);
+    public ResponseEntity<CostumerDto.CostumerResponseListAllDto> getAllCostumers(@RequestParam Map<String, String> paginationParams) {
+        int pageNumber = Integer.parseInt(paginationParams.getOrDefault("pageNumber", "0"));
+        int itemsPerPage = Integer.parseInt(paginationParams.getOrDefault("itemsPerPage", "10"));
+        return costumerService.getAllCostumers(pageNumber, itemsPerPage);
     }
 
     @GetMapping("/get-by-id/{id}")

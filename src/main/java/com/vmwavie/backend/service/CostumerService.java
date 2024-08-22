@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -27,11 +27,8 @@ public class CostumerService {
     @Autowired
     private CostumerRepository costumerRepository;
 
-    public ResponseEntity<CostumerDto.CostumerResponseListAllDto> getAllCostumers(@RequestBody Map<String, Integer> paginationParams) {
+    public ResponseEntity<CostumerDto.CostumerResponseListAllDto> getAllCostumers(@RequestParam int pageNumber, @RequestParam int itemsPerPage) {
         try {
-            int pageNumber = paginationParams.getOrDefault("pageNumber", 0);
-            int itemsPerPage = paginationParams.getOrDefault("itemsPerPage", 10);
-
             Pageable pageable = PageRequest.of(pageNumber, itemsPerPage);
             Page<Costumer> costumerPage = costumerRepository.findAll(pageable);
             List<Costumer> costumers = costumerPage.getContent();
