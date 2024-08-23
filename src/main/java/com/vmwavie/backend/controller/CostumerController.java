@@ -37,6 +37,12 @@ public class CostumerController {
         return costumerService.getCostumerById(id);
     }
 
+    @GetMapping("/get-by-text/{filter}")
+    @ApiOperation(value = "Retorna um cliente específico pelo texto de busca")
+    public ResponseEntity<CostumerDto.CostumerResponseListAllDto> getCostumerByText(@PathVariable String filter) {
+        return costumerService.getCostumerByText(filter);
+    }
+
     @PostMapping("/create")
     @ApiOperation(value = "Cadastra um novo cliente")
     public ResponseEntity<CostumerDto.CostumerResponseSaveDto> saveCostumer(@RequestBody Costumer costumer) {
