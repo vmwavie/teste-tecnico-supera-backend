@@ -16,10 +16,10 @@ public interface CostumerRepository extends JpaRepository<Costumer, Long> {
     // this is not best alogorithmic for this way, the best in
     // my opninion is use sql alogithm for mapping results with more compatibility with input, this dont make this actualy, this code is a bullshit.
 
-    @Query(value = "SELECT * FROM Costumer c WHERE c.name LIKE %:name% LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT * FROM Costumer c WHERE c.name ILIKE %:name% LIMIT 10", nativeQuery = true)
     List<Costumer> findByNameContainingIgnoreCase(@Param("name") String name);
 
-    @Query(value = "SELECT * FROM Costumer c WHERE c.cpf LIKE %:cpf% LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT * FROM Costumer c WHERE c.cpf ILIKE %:cpf% LIMIT 10", nativeQuery = true)
     List<Costumer> findByCpfContaining(@Param("cpf") String cpf);
 
     @Query(value = "SELECT * FROM Costumer c WHERE c.whatsapp = :whatsapp LIMIT 10", nativeQuery = true)
