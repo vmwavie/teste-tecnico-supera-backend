@@ -37,7 +37,8 @@ public class CostumerService {
 
             return ResponseEntity.ok(responseDto);
         } catch (Exception e) {
-            CostumerDto.CostumerResponseListAllDto errorResponse = new CostumerDto.CostumerResponseListAllDto(GlobalMessage.COMMON_ERRORS.UNDEFINED);
+            String errorMessage = Validations.isNativeError(e.getMessage()) ? GlobalMessage.COMMON_ERRORS.UNDEFINED : e.getMessage();
+            CostumerDto.CostumerResponseListAllDto errorResponse = new CostumerDto.CostumerResponseListAllDto(errorMessage);
 
             return ResponseEntity.status(500).body(errorResponse);
         }
@@ -54,7 +55,8 @@ public class CostumerService {
                 return ResponseEntity.status(404).body(errorResponse);
             }
         } catch (Exception e) {
-            CostumerDto.CostumerResponseListOneDto errorResponse = new CostumerDto.CostumerResponseListOneDto(GlobalMessage.COMMON_ERRORS.UNDEFINED);
+            String errorMessage = Validations.isNativeError(e.getMessage()) ? GlobalMessage.COMMON_ERRORS.UNDEFINED : e.getMessage();
+            CostumerDto.CostumerResponseListOneDto errorResponse = new CostumerDto.CostumerResponseListOneDto(errorMessage);
             return ResponseEntity.status(500).body(errorResponse);
         }
     }
@@ -77,8 +79,9 @@ public class CostumerService {
 
             return ResponseEntity.ok(responseDto);
         } catch (Exception e) {
+            String errorMessage = Validations.isNativeError(e.getMessage()) ? GlobalMessage.COMMON_ERRORS.UNDEFINED : e.getMessage();
             CostumerDto.CostumerResponseSaveDto errorResponse = new CostumerDto.CostumerResponseSaveDto();
-            errorResponse.setErrorMessage(GlobalMessage.COMMON_ERRORS.UNDEFINED);
+            errorResponse.setErrorMessage(errorMessage);
 
             return ResponseEntity.status(500).body(errorResponse);
         }
@@ -101,8 +104,9 @@ public class CostumerService {
 
             return ResponseEntity.ok(responseDto);
         } catch (Exception e) {
+            String errorMessage = Validations.isNativeError(e.getMessage()) ? GlobalMessage.COMMON_ERRORS.UNDEFINED : e.getMessage();
             CostumerDto.CostumerResponseUpdateDto errorResponse = new CostumerDto.CostumerResponseUpdateDto();
-            errorResponse.setErrorMessage(GlobalMessage.COMMON_ERRORS.UNDEFINED);
+            errorResponse.setErrorMessage(errorMessage);
 
             return ResponseEntity.status(500).body(errorResponse);
         }
@@ -120,7 +124,8 @@ public class CostumerService {
 
             return ResponseEntity.ok(Collections.singletonMap("success", CostumerMessage.SUCCESS_MESSAGES.COSTUMER_DELETED_SUCCESSFULLY));
         } catch (Exception e) {
-            return ResponseEntity.status(500).body(Collections.singletonMap("error", GlobalMessage.COMMON_ERRORS.UNDEFINED));
+            String errorMessage = Validations.isNativeError(e.getMessage()) ? GlobalMessage.COMMON_ERRORS.UNDEFINED : e.getMessage();
+            return ResponseEntity.status(500).body(Collections.singletonMap("error", errorMessage));
         }
     }
 

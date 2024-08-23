@@ -1,5 +1,9 @@
 package com.vmwavie.backend.utils;
 
+import com.vmwavie.backend.constants.CostumerMessage;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Validations {
@@ -11,7 +15,13 @@ public class Validations {
      * @return true if the CPF is valid, false otherwise.
      */
     public static boolean isValidCPF(String cpf) {
-        if (cpf == null || cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
+        if (cpf == null) {
+            return false;
+        }
+
+        cpf = cpf.replaceAll("\\D", "");
+
+        if (cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) {
             return false;
         }
 
@@ -25,6 +35,10 @@ public class Validations {
                 firstCheckDigit = 0;
             }
 
+            if (cpf.charAt(9) - '0' != firstCheckDigit) {
+                return false;
+            }
+
             sum = 0;
             for (int i = 0; i < 10; i++) {
                 sum += (cpf.charAt(i) - '0') * (11 - i);
@@ -34,8 +48,8 @@ public class Validations {
                 secondCheckDigit = 0;
             }
 
-            return cpf.charAt(9) - '0' == firstCheckDigit && cpf.charAt(10) - '0' == secondCheckDigit;
-        } catch (NumberFormatException e) {
+            return cpf.charAt(10) - '0' == secondCheckDigit;
+        } catch (Exception e) {
             return false;
         }
     }
@@ -67,5 +81,23 @@ public class Validations {
         }
         String[] words = name.trim().split("\\s+");
         return words.length >= 2;
+    }
+
+
+    /**
+     * This function should validate if as native error of java or is error trathed by the application.
+     *
+     * @param errorMessage String representing the error message.
+     * @return true if the error message is a native error of java
+     */
+    public static Boolean isNativeError(String errorMessage) {
+        List<String> definedErrorMessages = Arrays.asList(
+                CostumerMessage.ERROR_MESSAGES.COSTUMER_ALREADY_EXISTS,
+                CostumerMessage.ERROR_MESSAGES.COSTUMER_INVALID_NAME,
+                CostumerMessage.ERROR_MESSAGES.COSTUMER_INVALID_CPF,
+                CostumerMessage.ERROR_MESSAGES.COSTUMER_INVALID_WHATSAPP
+        );
+
+        return definedErrorMessages.stream().anyMatch(errorMessage::equals) ? false : null;
     }
 }

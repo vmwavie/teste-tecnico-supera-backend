@@ -9,7 +9,7 @@ public class CostumerMessage {
         public final String COSTUMER_ALREADY_EXISTS = "The customer already exists.";
 
         public final String COSTUMER_INVALID_NAME = "The provided name is invalid, please provide first and last name.";
-        public final String COSTUMER_INVALID_CPF = "The provided CPF is invalid, please provide a CPF in the format: 000.000.000-00.";
+        public final String COSTUMER_INVALID_CPF = "The provided CPF is invalid, please provide a CPF in the format: 00000000000.";
         public final String COSTUMER_INVALID_WHATSAPP = "The provided Whatsapp number is invalid, please provide a number in the format: (00) 0000-0000.";
     }
 
