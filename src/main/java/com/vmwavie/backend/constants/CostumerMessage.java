@@ -5,17 +5,17 @@ public class CostumerMessage {
     public static final SuccessMessages SUCCESS_MESSAGES = new SuccessMessages();
 
     public static class ErrorMessages {
-        public final String COSTUMER_NOT_FOUND = "O cliente não foi encontrado.";
-        public final String COSTUMER_ALREADY_EXISTS = "O cliente já existe.";
+        public final String COSTUMER_NOT_FOUND = "The customer was not found.";
+        public final String COSTUMER_ALREADY_EXISTS = "The customer already exists.";
 
-        public final String COSTUMER_INVALID_NAME = "O nome informado é inválido, por favor informe nome e sobrenome.";
-        public final String COSTUMER_INVALID_CPF = "O CPF informado é inválido, por favor informe um CPF no formato: 000.000.000-00.";
-        public final String COSTUMER_INVALID_WHATSAPP = "O número do Whatsapp informado é inválido, por favor informe um número no formato: (00) 0000-0000.";
+        public final String COSTUMER_INVALID_NAME = "The provided name is invalid, please provide first and last name.";
+        public final String COSTUMER_INVALID_CPF = "The provided CPF is invalid, please provide a CPF in the format: 000.000.000-00.";
+        public final String COSTUMER_INVALID_WHATSAPP = "The provided Whatsapp number is invalid, please provide a number in the format: (00) 0000-0000.";
     }
 
     public static class SuccessMessages {
-        public final String COSTUMER_SAVED_SUCCESSFULLY = "Cliente criado com sucesso.";
-        public final String COSTUMER_UPDATED_SUCCESSFULLY = "Cliente atualizado com sucesso.";
-        public final String COSTUMER_DELETED_SUCCESSFULLY = "Cliente excluído com sucesso.";
+        public final String COSTUMER_SAVED_SUCCESSFULLY = "Customer created successfully.";
+        public final String COSTUMER_UPDATED_SUCCESSFULLY = "Customer updated successfully.";
+        public final String COSTUMER_DELETED_SUCCESSFULLY = "Customer deleted successfully.";
     }
 }

@@ -4,6 +4,6 @@ public class GlobalMessage {
     public static final ErrorMessages COMMON_ERRORS = new ErrorMessages();
 
     public static class ErrorMessages {
-        public final String UNDEFINED = "Ocorreu um erro inesperado. Por favor, tente novamente.";
+        public final String UNDEFINED = "An unexpected error occurred. Please try again.";
     }
 }
