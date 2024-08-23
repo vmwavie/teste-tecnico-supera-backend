@@ -13,7 +13,11 @@ import java.util.Optional;
 public interface CostumerRepository extends JpaRepository<Costumer, Long> {
     Optional<Costumer> findByCpf(String cpf);
 
-    List<Costumer> findByNameContainingIgnoreCase(String filter);
+    // this is not best alogorithmic for this way, the best in
+    // my opninion is use sql alogithm for mapping results with more compatibility with input, this dont make this actualy, this code is a bullshit.
+
+    @Query(value = "SELECT * FROM Costumer c WHERE c.name LIKE %:name% LIMIT 10", nativeQuery = true)
+    List<Costumer> findByNameContainingIgnoreCase(@Param("name") String name);
 
     @Query(value = "SELECT * FROM Costumer c WHERE c.cpf LIKE %:cpf% LIMIT 10", nativeQuery = true)
     List<Costumer> findByCpfContaining(@Param("cpf") String cpf);
