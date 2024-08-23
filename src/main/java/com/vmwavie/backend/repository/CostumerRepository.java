@@ -22,6 +22,6 @@ public interface CostumerRepository extends JpaRepository<Costumer, Long> {
     @Query(value = "SELECT * FROM Costumer c WHERE c.cpf ILIKE %:cpf% LIMIT 10", nativeQuery = true)
     List<Costumer> findByCpfContaining(@Param("cpf") String cpf);
 
-    @Query(value = "SELECT * FROM Costumer c WHERE c.whatsapp = :whatsapp LIMIT 10", nativeQuery = true)
+    @Query(value = "SELECT * FROM Costumer c WHERE c.whatsapp ILIKE %:whatsapp% LIMIT 10", nativeQuery = true)
     List<Costumer> findByWhatsappContaining(@Param("whatsapp") Long whatsapp);
 }
